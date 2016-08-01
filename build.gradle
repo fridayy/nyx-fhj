@@ -1,0 +1,50 @@
+group 'at.fhj.swd.nyx'
+version '0.1-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+        springDependencyManagementPluginVersion = "0.5.1.RELEASE"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:$springDependencyManagementPluginVersion")
+    }
+}
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'spring-boot'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        compile "org.codehaus.groovy:groovy-all"
+        compile "org.spockframework:spock-core:1.0-groovy-2.4"
+        compile "org.spockframework:spock-spring:1.0-groovy-2.4"
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.BUILD-SNAPSHOT"
+        }
+    }
+}
+
+project(':nyx-config') {
+    dependencies {
+        compile project(':nyx-api')
+    }
+}

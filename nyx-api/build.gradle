@@ -1,0 +1,8 @@
+group 'at.fhj.swd.nyx'
+version '0.1-SNAPSHOT'
+
+
+dependencies {
+    compileOnly "org.springframework.boot:spring-boot-starter"
+    compileOnly "org.springframework.cloud:spring-cloud-config-server"
+}
