@@ -15,7 +15,6 @@ buildscript {
     }
 }
 
-
 allprojects {
     apply plugin: 'java'
     apply plugin: 'groovy'
@@ -41,10 +40,17 @@ allprojects {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.BUILD-SNAPSHOT"
         }
     }
+    bootRepackage.enabled = false
+    bootRun.enabled = false
+    findMainClass.enabled = false
 }
 
 project(':nyx-config') {
     dependencies {
         compile project(':nyx-api')
     }
+
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
 }
