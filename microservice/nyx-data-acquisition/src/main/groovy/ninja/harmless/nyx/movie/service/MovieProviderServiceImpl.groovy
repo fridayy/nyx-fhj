@@ -33,7 +33,7 @@ class MovieProviderServiceImpl implements ninja.harmless.nyx.movie.MovieProvider
     @Override
     Movie provideByTitle(String title) {
         CompletableFuture<Movie> providedMovie = repository.findByTitleIgnoreCase(title)
-        if(Objects.isNull(providedMovie.get())) {
+        if(Objects.isNull(providedMovie?.get())) {
             return remoteAcquisition.acquireByTitle(title)
         }
         return providedMovie.get()
