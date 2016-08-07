@@ -2,8 +2,8 @@ package ninja.harmless.nyx.bootstrap.config;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-import javax.lang.model.element.Element;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -19,5 +19,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @EnableConfigServer
 @SpringBootApplication
+@EnableEurekaClient
 public @interface BootstrapConfigServer {
 }

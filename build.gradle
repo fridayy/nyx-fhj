@@ -37,7 +37,7 @@ allprojects {
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.BUILD-SNAPSHOT"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4"
         }
     }
     bootRepackage.enabled = false
@@ -46,6 +46,16 @@ allprojects {
 }
 
 project(':nyx-config') {
+    dependencies {
+        compile project(':nyx-api')
+    }
+
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
+}
+
+project(':nyx-eureka') {
     dependencies {
         compile project(':nyx-api')
     }

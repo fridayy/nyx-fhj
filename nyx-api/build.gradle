@@ -5,4 +5,5 @@ version '0.1-SNAPSHOT'
 dependencies {
     compileOnly "org.springframework.boot:spring-boot-starter"
     compileOnly "org.springframework.cloud:spring-cloud-config-server"
+    compileOnly "org.springframework.cloud:spring-cloud-starter-eureka-server"
 }

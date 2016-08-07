@@ -7,7 +7,8 @@ rootProject.name = 'nyx-fhj'
 def projectMap = [
         "nyx-api" : "",
         "nyx-config" : "microservice",
-        "nyx-data-acquisition" : "microservice"
+        "nyx-data-acquisition" : "microservice",
+        "nyx-eureka" : "discovery"
 ]
 
 
