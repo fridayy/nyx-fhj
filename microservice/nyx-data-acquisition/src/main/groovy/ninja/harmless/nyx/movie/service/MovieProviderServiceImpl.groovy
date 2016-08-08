@@ -2,7 +2,7 @@ package ninja.harmless.nyx.movie.service
 
 import groovy.transform.TypeChecked
 import ninja.harmless.nyx.movie.MovieRemoteAcquisitionService
-import ninja.harmless.nyx.movie.dto.Movie
+import ninja.harmless.nyx.movie.model.Movie
 import ninja.harmless.nyx.movie.repository.MovieRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -37,5 +37,10 @@ class MovieProviderServiceImpl implements ninja.harmless.nyx.movie.MovieProvider
             return remoteAcquisition.acquireByTitle(title)
         }
         return providedMovie.get()
+    }
+
+    @Override
+    Iterable<Movie> provideAll() {
+        return repository.findAll()
     }
 }

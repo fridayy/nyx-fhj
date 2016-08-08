@@ -1,4 +1,4 @@
-package ninja.harmless.nyx.movie.dto
+package ninja.harmless.nyx.movie.model
 
 import ninja.harmless.nyx.data.JsonDTO
 import org.springframework.data.annotation.Id

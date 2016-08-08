@@ -1,6 +1,6 @@
 package ninja.harmless.nyx.movie
 
-import ninja.harmless.nyx.movie.dto.Movie
+import ninja.harmless.nyx.movie.model.Movie
 /**
  * Service which is used to acquire movie data from the open movie database as a fallback method
  * if a movie is not available in the database.

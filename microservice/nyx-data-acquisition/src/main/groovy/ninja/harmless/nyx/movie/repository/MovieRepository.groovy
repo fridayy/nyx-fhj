@@ -1,6 +1,6 @@
 package ninja.harmless.nyx.movie.repository
 
-import ninja.harmless.nyx.movie.dto.Movie
+import ninja.harmless.nyx.movie.model.Movie
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.repository.MongoRepository
 

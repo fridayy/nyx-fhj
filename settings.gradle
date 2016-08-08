@@ -9,7 +9,8 @@ def projectMap = [
         "nyx-config" : "microservice",
         "nyx-data-acquisition" : "microservice",
         "nyx-eureka" : "discovery",
-        "nyx-api-gateway" : "gateway"
+        "nyx-api-gateway" : "gateway",
+        "nyx-statistics" : "microservice"
 ]
 
 

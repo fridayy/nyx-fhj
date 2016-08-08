@@ -1,6 +1,6 @@
 package ninja.harmless.nyx.movie
 
-import ninja.harmless.nyx.movie.dto.Movie
+import ninja.harmless.nyx.movie.model.Movie
 
 /**
  * Provides Movies acquired either directly from the MongoDB or from
@@ -17,4 +17,9 @@ interface MovieProviderService {
      * @return
      */
     Movie provideByTitle(String title)
+
+    /**
+     * Provides all movies currently stored within the database
+     */
+    Iterable<Movie> provideAll()
 }

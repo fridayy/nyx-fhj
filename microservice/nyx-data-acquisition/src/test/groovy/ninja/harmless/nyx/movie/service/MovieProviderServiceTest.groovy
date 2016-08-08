@@ -1,12 +1,10 @@
 package ninja.harmless.nyx.movie.service
 
 import ninja.harmless.nyx.movie.MovieRemoteAcquisitionService
-import ninja.harmless.nyx.movie.dto.Movie
+import ninja.harmless.nyx.movie.model.Movie
 import ninja.harmless.nyx.movie.repository.MovieRepository
 import ninja.harmless.nyx.testcategories.annotation.UnitTest
-import org.junit.experimental.categories.Category
 import spock.lang.Specification
-import spock.lang.Unroll
 
 import java.util.concurrent.CompletableFuture
 

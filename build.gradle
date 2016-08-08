@@ -65,7 +65,22 @@ project(':nyx-eureka') {
     findMainClass.enabled = true
 }
 
-project('nyx-data-acquisition') {
+project(':nyx-data-acquisition') {
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
+}
+
+project(':nyx-statistics') {
+    dependencies {
+        compile project(':nyx-api')
+    }
+}
+
+project(':nyx-api-gateway') {
+    dependencies {
+        compile project(':nyx-api')
+    }
     bootRepackage.enabled = true
     bootRun.enabled = true
     findMainClass.enabled = true

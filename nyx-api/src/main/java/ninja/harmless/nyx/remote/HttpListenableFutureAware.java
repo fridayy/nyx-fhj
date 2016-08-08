@@ -1,6 +1,7 @@
 package ninja.harmless.nyx.remote;
 
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.AsyncRestTemplate;
 
 import java.util.concurrent.ExecutionException;
@@ -19,6 +20,16 @@ public class HttpListenableFutureAware<T> implements HttpFutureAware<T> {
         S entity = null;
         try {
             entity = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    public ResponseEntity<T> collectFromListenableFuture2(Future<T> future) {
+        ResponseEntity<T> entity = null;
+        try {
+            entity = (ResponseEntity<T>) future.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
