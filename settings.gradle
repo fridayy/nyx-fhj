@@ -8,7 +8,8 @@ def projectMap = [
         "nyx-api" : "",
         "nyx-config" : "microservice",
         "nyx-data-acquisition" : "microservice",
-        "nyx-eureka" : "discovery"
+        "nyx-eureka" : "discovery",
+        "nyx-api-gateway" : "gateway"
 ]
 
 
@@ -23,3 +24,4 @@ rootProject.children.each {
     it.projectDir = new File(settingsDir, "$path/$projectName")
     it.setBuildFileName('build.gradle')
 }
+

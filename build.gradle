@@ -64,3 +64,9 @@ project(':nyx-eureka') {
     bootRun.enabled = true
     findMainClass.enabled = true
 }
+
+project('nyx-data-acquisition') {
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
+}
