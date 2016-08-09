@@ -5,9 +5,23 @@ plugins {
 }
 apply plugin: 'com.github.johnrengelman.shadow'
 
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/iovertx-2993"
+    }
+}
+
 dependencies {
-    compile 'io.vertx:vertx-web:3.2.1'
-    compile 'io.vertx:vertx-core:3.2.1'
+    compile 'io.vertx:vertx-web:3.3.2'
+    compile 'io.vertx:vertx-core:3.3.2'
+    compile 'io.vertx:vertx-reactive-streams:3.3.2'
+    compile 'io.vertx:vertx-rx-java:3.3.2'
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    compile 'io.vertx:vertx-mongo-client:3.3.2'
+    compile 'io.vertx:vertx-mongo-embedded-db:3.3.2'
 }
 
 mainClassName = 'io.vertx.core.Launcher'
@@ -17,7 +31,7 @@ version '0.1-SNAPSHOT'
 shadowJar {
     classifier = 'fat'
     manifest {
-        attributes 'Main-Verticle': 'ninja.harmless.fhj.vertx.app.VertxHttpServerApplication'
+        attributes 'Main-Verticle': 'ninja.harmless.nyx.stats.VertxHttpServerApplication'
     }
     mergeServiceFiles {
         include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
