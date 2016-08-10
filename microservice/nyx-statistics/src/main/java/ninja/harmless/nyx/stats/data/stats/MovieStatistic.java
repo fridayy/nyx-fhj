@@ -1,4 +1,4 @@
-package ninja.harmless.nyx.stats.data;
+package ninja.harmless.nyx.stats.data.stats;
 
 import ninja.harmless.nyx.data.JsonDTO;
 
@@ -12,12 +12,15 @@ public class MovieStatistic {
 
     }
 
-    public String getId() {
-        return id;
+    private String _id;
+    private long visits;
+
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public long getVisits() {
@@ -27,7 +30,4 @@ public class MovieStatistic {
     public void setVisits(long visits) {
         this.visits = visits;
     }
-
-    private String id;
-    private long visits;
 }

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
 /**
  * @author benjamin.krenn@edu.fh-joanneum.at - 8/5/16.
  */
@@ -16,11 +15,13 @@ class MovieRestController {
 
     MovieProviderService movieProviderService
     MovieRepository movieRepository
+    MovieStatisticsRemoteService remoteService
 
     @Autowired
-    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository) {
+    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository, MovieStatisticsRemoteService remoteService) {
         this.movieProviderService = movieProviderService
         this.movieRepository = movieRepository
+        this.remoteService = remoteService
     }
 
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
@@ -37,6 +38,8 @@ class MovieRestController {
     @RequestMapping(value = "/movies/{title}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public @ResponseBody
     Movie getByTitle(@PathVariable String title) {
-        return movieProviderService.provideByTitle(title);
+        Movie movie =  movieProviderService.provideByTitle(title)
+        remoteService.send(movie)
+        return movie
     }
 }

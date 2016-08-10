@@ -1,8 +1,10 @@
 package ninja.harmless.nyx.jsonmapper;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.IOException;
 
@@ -23,5 +25,16 @@ public class JsonMapper {
         }
 
         return returnObj;
+    }
+
+    public static <T> String writeObject(T object) {
+        ObjectWriter objectWriter = new ObjectMapper().writer();
+        String result = "";
+        try {
+            result = objectWriter.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
