@@ -31,7 +31,7 @@ class MovieRemoteAcquisitionServiceImpl extends HttpListenableFutureAware<String
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(String.class)
                 .build();
-        ResponseEntity<String> entity = collectFromListenableFuture(makeHttpRequest(requestData))
+        ResponseEntity<String> entity = collectFromListenableFuture(makeHttpRequest(requestData)) as ResponseEntity<String>
         Movie movie = JsonMapper.mapObject(entity.getBody(), Movie);
         repository.save(movie)
         return movie

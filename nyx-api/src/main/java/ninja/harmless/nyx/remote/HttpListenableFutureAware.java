@@ -40,7 +40,11 @@ public class HttpListenableFutureAware<T> implements HttpFutureAware<T> {
     @SuppressWarnings("unchecked")
     public Future<T> makeHttpRequest(HttpRequestData requestData) {
         AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
-        HttpEntity<T> requestEntity = new HttpEntity<>(null, requestData.getHttpHeaders());
+        T body = null;
+        if(requestData.getBody() != null) {
+            body = (T) requestData.getBody();
+        }
+        HttpEntity<T> requestEntity = new HttpEntity<T>(body, requestData.getHttpHeaders());
 
         return asyncRestTemplate.exchange(requestData.getUrl(), requestData.getHttpMethod(), requestEntity, requestData.getResponseType());
     }

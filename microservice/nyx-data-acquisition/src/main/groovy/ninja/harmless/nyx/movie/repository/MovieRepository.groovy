@@ -13,4 +13,5 @@ import java.util.concurrent.CompletableFuture
 interface MovieRepository extends MongoRepository<Movie, String> {
 
     CompletableFuture<Movie> findByTitleIgnoreCase(String title)
+    CompletableFuture<Movie> findById(String id)
 }

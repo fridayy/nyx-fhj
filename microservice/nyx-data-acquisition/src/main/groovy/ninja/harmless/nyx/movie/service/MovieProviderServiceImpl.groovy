@@ -40,6 +40,12 @@ class MovieProviderServiceImpl implements ninja.harmless.nyx.movie.MovieProvider
     }
 
     @Override
+    Movie provideById(String id) {
+        CompletableFuture<Movie> providedMovie = repository.findById(id)
+        return providedMovie.get()
+    }
+
+    @Override
     Iterable<Movie> provideAll() {
         return repository.findAll()
     }

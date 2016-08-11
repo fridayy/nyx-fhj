@@ -18,6 +18,8 @@ interface MovieProviderService {
      */
     Movie provideByTitle(String title)
 
+    Movie provideById(String id)
+
     /**
      * Provides all movies currently stored within the database
      */

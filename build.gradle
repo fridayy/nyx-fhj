@@ -85,3 +85,9 @@ project(':nyx-api-gateway') {
     bootRun.enabled = true
     findMainClass.enabled = true
 }
+
+project(':nyx-trailer-service') {
+    dependencies {
+        compile project(':nyx-api')
+    }
+}
