@@ -15,10 +15,10 @@ class MovieRestController {
 
     MovieProviderService movieProviderService
     MovieRepository movieRepository
-    MovieStatisticsRemoteService remoteService
+    MoviePublishService remoteService
 
     @Autowired
-    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository, MovieStatisticsRemoteService remoteService) {
+    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository, MoviePublishService remoteService) {
         this.movieProviderService = movieProviderService
         this.movieRepository = movieRepository
         this.remoteService = remoteService
@@ -39,7 +39,7 @@ class MovieRestController {
     public @ResponseBody
     Movie getByTitle(@PathVariable String title) {
         Movie movie =  movieProviderService.provideByTitle(title)
-        remoteService.send(movie)
+        remoteService.publish(movie)
         return movie
     }
 }
