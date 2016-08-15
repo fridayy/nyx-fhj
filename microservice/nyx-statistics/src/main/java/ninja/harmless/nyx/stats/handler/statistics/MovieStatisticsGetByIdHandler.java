@@ -26,7 +26,7 @@ public class MovieStatisticsGetByIdHandler implements Handler<RoutingContext> {
         JsonObject query = new JsonObject().put("_id", id);
 
         mongoClient.findOneObservable(STATS_COLLECTION, query, null).subscribe(
-               result -> { event.response().end(Json.encodePrettily(result));}
+               result -> { event.response().end(Json.encode(result));}
         );
     }
 }

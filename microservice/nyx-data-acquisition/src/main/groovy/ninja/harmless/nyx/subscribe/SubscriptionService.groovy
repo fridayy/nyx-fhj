@@ -8,5 +8,5 @@ import ninja.harmless.nyx.publish.NyxMicroservice
 interface SubscriptionService {
     void handleSubscriptionRequest(SubscriptionRequest request)
 
-    List<NyxMicroservice> getSubscribedServices()
+    Set<NyxMicroservice> getSubscribedServices()
 }

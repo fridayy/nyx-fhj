@@ -41,7 +41,7 @@ public class MovieStatisticsVisitsHandler implements Handler<RoutingContext> {
                     error.printStackTrace();
                 },
                 () -> {
-                    event.response().setStatusCode(200);
+                    event.response().setStatusCode(200).end();
                 }
         );
     }

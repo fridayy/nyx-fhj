@@ -3,6 +3,7 @@ package ninja.harmless.nyx.trailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import javax.annotation.PostConstruct;
 
@@ -18,6 +19,7 @@ import javax.annotation.PostConstruct;
  * @author benjamin.krenn@edu.fh-joanneum.at - 8/11/16.
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class Bootstrap {
     @Autowired
     SparkApplication sparkApplication;

@@ -1,8 +1,11 @@
-package ninja.harmless.nyx.trailer.movie.data;
+package ninja.harmless.nyx.trailer.movie.data.DTO;
+
+import ninja.harmless.nyx.data.JsonDTO;
 
 /**
  * @author benjamin.krenn@edu.fh-joanneum.at - 8/12/16.
  */
+@JsonDTO
 public class Movie {
 
     private String id;

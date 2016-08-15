@@ -75,6 +75,9 @@ project(':nyx-statistics') {
     dependencies {
         compile project(':nyx-api')
     }
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
 }
 
 project(':nyx-api-gateway') {
@@ -90,4 +93,7 @@ project(':nyx-trailer-service') {
     dependencies {
         compile project(':nyx-api')
     }
+    bootRepackage.enabled = true
+    bootRun.enabled = true
+    findMainClass.enabled = true
 }

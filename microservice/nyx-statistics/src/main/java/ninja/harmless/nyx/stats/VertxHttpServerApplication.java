@@ -65,7 +65,7 @@ public class VertxHttpServerApplication extends AbstractVerticle {
         router.get(STATS_ENDPOINT).produces(APPLICATION_JSON).handler(statsGetAllHandler::handle);
         router.get(STATS_ID_ENDPOINT).produces(APPLICATION_JSON).handler(statsGetByIdHandler::handle);
         router.get(MOVIE_TITLE_ENDPOINT).produces(APPLICATION_JSON).handler(movieGetByTitleHandler::handle);
-        router.post(STATS_ENDPOINT).consumes("application/json").handler(movieStatisticsVisitsHandler::handle);
+        router.post(STATS_ID_ENDPOINT).consumes("application/json").handler(movieStatisticsVisitsHandler::handle);
 
 
         server.requestHandler(router::accept).listen(8081);

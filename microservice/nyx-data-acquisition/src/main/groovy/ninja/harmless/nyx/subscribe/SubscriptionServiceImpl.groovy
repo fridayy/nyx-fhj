@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 class SubscriptionServiceImpl extends HttpListenableFutureAware<String> implements SubscriptionService {
 
     EurekaInstanceProvider eurekaInstanceProvider
-    List<NyxMicroservice> registeredServices
+    Set<NyxMicroservice> registeredServices
 
     @Autowired
     SubscriptionServiceImpl(EurekaInstanceProvider eurekaInstanceProvider) {
@@ -40,7 +40,7 @@ class SubscriptionServiceImpl extends HttpListenableFutureAware<String> implemen
     }
 
     @Override
-    List<NyxMicroservice> getSubscribedServices() {
+    Set<NyxMicroservice> getSubscribedServices() {
         return registeredServices
     }
 }

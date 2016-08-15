@@ -17,7 +17,7 @@ public class CatalogueServiceImpl extends HttpListenableFutureAware<Movie> imple
     @SuppressWarnings("unchecked")
     @HystrixCommand(fallbackMethod = "stub")
     public Movie getMovie(String title) {
-        HttpRequestData requestData = new HttpRequestData.HttpRequestDataBuilder("http://localhost:8000/catalogue/movies" + title)
+        HttpRequestData requestData = new HttpRequestData.HttpRequestDataBuilder("http://localhost:8000/movies/" + title)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Movie.class)
                 .build();

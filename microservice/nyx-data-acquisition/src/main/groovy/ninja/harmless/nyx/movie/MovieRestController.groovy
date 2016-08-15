@@ -1,5 +1,6 @@
 package ninja.harmless.nyx.movie
 
+import ninja.harmless.nyx.measure.MeasureTime
 import ninja.harmless.nyx.movie.model.Movie
 import ninja.harmless.nyx.movie.repository.MovieRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,6 +25,7 @@ class MovieRestController {
         this.remoteService = remoteService
     }
 
+    @MeasureTime
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
     public Iterable<Movie> movies() {
         return movieProviderService.provideAll()

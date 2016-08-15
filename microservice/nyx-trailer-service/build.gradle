@@ -9,5 +9,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    compile group: 'com.ning', name: 'async-http-client', version: '1.9.39'
 
 }
