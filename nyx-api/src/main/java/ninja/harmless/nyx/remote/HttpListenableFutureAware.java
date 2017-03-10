@@ -17,16 +17,16 @@ public class HttpListenableFutureAware<T> implements HttpFutureAware<T> {
 
     @Override
     public <S extends HttpEntity<T>> S collectFromListenableFuture(Future<S> future) {
-        S entity = null;
         try {
-            entity = future.get();
+            return future.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        return entity;
+        throw new IllegalStateException("Could not resolve future");
     }
 
     @SuppressWarnings("unchecked")
+    @Deprecated
     public ResponseEntity<T> collectFromListenableFuture2(Future<T> future) {
         ResponseEntity<T> entity = null;
         try {
