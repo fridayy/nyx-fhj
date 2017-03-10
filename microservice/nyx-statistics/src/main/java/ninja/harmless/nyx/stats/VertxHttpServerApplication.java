@@ -15,6 +15,8 @@ import ninja.harmless.nyx.stats.handler.statistics.MovieStatisticsGetAllHandler;
 import ninja.harmless.nyx.stats.handler.statistics.MovieStatisticsGetByIdHandler;
 import ninja.harmless.nyx.stats.handler.statistics.MovieStatisticsVisitsHandler;
 import ninja.harmless.nyx.stats.subscription.SubscriptionRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import static ninja.harmless.nyx.stats.utils.CommonConstants.*;
@@ -27,6 +29,9 @@ import static ninja.harmless.nyx.stats.utils.CommonConstants.*;
 @Component
 public class VertxHttpServerApplication extends AbstractVerticle {
 
+
+    private boolean isSubscribed = false;
+    private static final Logger logger = LoggerFactory.getLogger("VertxApplication");
 
     @Override
     public void start() throws Exception {
@@ -50,11 +55,15 @@ public class VertxHttpServerApplication extends AbstractVerticle {
                 .setDefaultHost("localhost")
                 .setDefaultPort(8000);
         HttpClient client = vertx.createHttpClient(options);
-        long timer = vertx.setTimer(10000, id -> {
-            client.post("/subscribe", response -> {
-                System.out.println(response.statusCode());
-            }).putHeader("content-type", "application/json").end(Json.encode(subscriptionRequest));
-        });
+
+        long timer = vertx.setTimer(10000, req -> client.post("/subscribe", response -> {
+            if (response.statusCode() == 200) {
+                isSubscribed = true;
+                System.out.println("Successfully Subscribed.");
+            } else {
+                System.out.println("Subscription failed: " + response.statusCode() + ". Retrying...");
+            }
+        }).putHeader("content-type", "application/json").end(Json.encode(subscriptionRequest)));
 
 
         MovieStatisticsGetAllHandler statsGetAllHandler = new MovieStatisticsGetAllHandler(mongo);

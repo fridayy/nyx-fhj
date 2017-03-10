@@ -3,6 +3,7 @@ package ninja.harmless.nyx.movie
 import ninja.harmless.nyx.measure.MeasureTime
 import ninja.harmless.nyx.movie.model.Movie
 import ninja.harmless.nyx.movie.repository.MovieRepository
+import ninja.harmless.nyx.publish.PublishService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -14,15 +15,15 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class MovieRestController {
 
-    MovieProviderService movieProviderService
-    MovieRepository movieRepository
-    MoviePublishService remoteService
+    private MovieProviderService movieProviderService
+    private MovieRepository movieRepository
+    private PublishService publishService
 
     @Autowired
-    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository, MoviePublishService remoteService) {
+    MovieRestController(MovieProviderService movieProviderService, MovieRepository movieRepository, PublishService publishService) {
         this.movieProviderService = movieProviderService
         this.movieRepository = movieRepository
-        this.remoteService = remoteService
+        this.publishService = publishService
     }
 
     @MeasureTime
@@ -41,7 +42,7 @@ class MovieRestController {
     public @ResponseBody
     Movie getByTitle(@PathVariable String title) {
         Movie movie =  movieProviderService.provideByTitle(title)
-        remoteService.publish(movie)
+        publishService.publish(movie)
         return movie
     }
 }

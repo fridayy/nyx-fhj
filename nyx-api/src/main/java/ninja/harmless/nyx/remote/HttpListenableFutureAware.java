@@ -26,6 +26,7 @@ public class HttpListenableFutureAware<T> implements HttpFutureAware<T> {
         return entity;
     }
 
+    @SuppressWarnings("unchecked")
     public ResponseEntity<T> collectFromListenableFuture2(Future<T> future) {
         ResponseEntity<T> entity = null;
         try {

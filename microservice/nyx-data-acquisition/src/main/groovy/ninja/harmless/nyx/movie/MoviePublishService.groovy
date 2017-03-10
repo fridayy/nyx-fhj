@@ -8,6 +8,7 @@ import ninja.harmless.nyx.movie.model.Movie
  *
  * @author benjamin.krenn@edu.fh-joanneum.at - 8/10/16.
  */
+@Deprecated
 interface MoviePublishService {
 
     /**

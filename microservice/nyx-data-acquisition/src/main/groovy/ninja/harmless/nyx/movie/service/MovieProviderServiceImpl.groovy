@@ -6,6 +6,7 @@ import ninja.harmless.nyx.movie.model.Movie
 import ninja.harmless.nyx.movie.repository.MovieRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.util.Assert
 
 import java.util.concurrent.CompletableFuture
 
@@ -32,6 +33,7 @@ class MovieProviderServiceImpl implements ninja.harmless.nyx.movie.MovieProvider
      */
     @Override
     Movie provideByTitle(String title) {
+        Assert.notNull(title, "Title cannot be null")
         CompletableFuture<Movie> providedMovie = repository.findByTitleIgnoreCase(title)
         if(Objects.isNull(providedMovie?.get())) {
             return remoteAcquisition.acquireByTitle(title)

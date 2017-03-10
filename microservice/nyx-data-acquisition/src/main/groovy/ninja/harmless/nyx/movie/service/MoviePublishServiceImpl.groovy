@@ -26,7 +26,7 @@ class MoviePublishServiceImpl extends HttpListenableFutureAware<Movie> implement
 
     @Override
     void publish(Movie movie) {
-        subscriptionService.getSubscribedServices().each {
+        subscriptionService.provideSubscribedServices().each {
             publishMovie(movie, it.addresses)
         }
     }

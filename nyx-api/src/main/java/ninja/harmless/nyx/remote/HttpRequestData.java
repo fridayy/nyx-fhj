@@ -15,6 +15,10 @@ public final class HttpRequestData {
     private Class       responseType;
     private Object      body;
 
+    private HttpRequestData() {
+        throw new UnsupportedOperationException("Can not be instantiated.");
+    }
+
     private HttpRequestData(HttpRequestDataBuilder builder) {
         this.url = builder.url;
         this.httpMethod = builder.httpMethod;

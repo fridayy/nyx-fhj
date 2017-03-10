@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+
+import java.util.concurrent.ConcurrentHashMap
+
+import static ninja.harmless.nyx.remote.HttpRequestData.*
+
 /**
  * @author benjamin.krenn@edu.fh-joanneum.at - 8/13/16.
  */
@@ -22,13 +27,13 @@ class SubscriptionServiceImpl extends HttpListenableFutureAware<String> implemen
     @Autowired
     SubscriptionServiceImpl(EurekaInstanceProvider eurekaInstanceProvider) {
         this.eurekaInstanceProvider = eurekaInstanceProvider
-        this.registeredServices = new ArrayList<>()
+        this.registeredServices = ConcurrentHashMap.newKeySet()
     }
 
     @Override
     void handleSubscriptionRequest(SubscriptionRequest request) {
         EurekaInstance eurekaInstance = eurekaInstanceProvider.provide()
-        HttpRequestData requestData = new HttpRequestData.HttpRequestDataBuilder(eurekaInstance.metadataUrl + request.serviceName)
+        HttpRequestData requestData = new HttpRequestDataBuilder(eurekaInstance.metadataUrl + request.serviceName)
             .withHttpMethod(HttpMethod.GET)
             .withResponseType(String.class)
             .build()
@@ -40,7 +45,7 @@ class SubscriptionServiceImpl extends HttpListenableFutureAware<String> implemen
     }
 
     @Override
-    Set<NyxMicroservice> getSubscribedServices() {
+    Set<NyxMicroservice> provideSubscribedServices() {
         return registeredServices
     }
 }
